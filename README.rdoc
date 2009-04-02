@@ -1,0 +1,54 @@
+= Fancy Errors
+
+== Description
+
+Define the whole error message for an attribute by prefixing it with '^':
+
+  validates_acceptance_of :terms, :message => "^Terms must be accepted."
+  @user.errors.full_messages #=> ['Terms must be accepted']
+
+Order your error messages:
+
+  validates_presence_of :title, :content
+  @post.errors.full_messages(:order => [:title, :content])
+    #=> ["Title can't be blank", "Content can't be blank"]
+
+Get the full messages for a specific attribute:
+
+  validates_presence_of :title, :message => "^Can has title?"
+  validates_uniqueness_of :title, :message => 'must be unique'
+  @post.errors.full_messages_on(:title)
+    #=> ['Can has title?', 'Title must be unique']
+
+== Installation
+
+    sudo gem install mintdigital-fancy_errors
+
+== Usage
+
+    config.gem 'mintdigital-fancy_errors', :lib => 'fancy_errors'
+
+== License
+
+Copyright (c) 2009 Dean Strelau, Mint Digital
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
