@@ -4,7 +4,7 @@ require 'rake'
 require 'rake/gempackagetask'
 spec = Gem::Specification.new do |s|
   s.name             = 'fancy_errors'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.has_rdoc         = false
   s.extra_rdoc_files = %w(README.rdoc)
   s.rdoc_options     = %w(--main README.rdoc)
