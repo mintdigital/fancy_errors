@@ -5,3 +5,5 @@ module ::ActiveRecord
     end
   end
 end
+
+::ActionView::Base.send(:include, FancyErrorsHelper)
