@@ -12,14 +12,15 @@ class FancyErrors < ActiveRecord::Errors
   end
 
   def full_messages_on(attribute)
-    (@errors[attribute.to_s] || []).inject([]) do |messages, msg|
+    (@errors[attribute.to_s] || []).inject([]) do |messages, error|
+      msg = error.full_message
+      attr_name = @base.class.human_attribute_name(attribute)
       if attribute.to_s == 'base'
         messages << msg
-      elsif msg =~ /^\^/
-        messages << msg[1..-1]
+      elsif msg =~ /^#{attr_name} \^/
+        messages << msg.gsub(/^#{attr_name} \^/,'')
       else
-        attr_name = @base.class.human_attribute_name(attribute)
-        messages << attr_name + I18n.t('activerecord.errors.format.separator', :default => ' ') + msg
+        messages << msg
       end
     end
   end
